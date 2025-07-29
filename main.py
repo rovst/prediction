@@ -12,7 +12,14 @@ def index():
         entry = [int(request.form[month]) for month in months]
 
         data.append(entry)
+
+        avg=average()
         #print(entry)
 
         average()
     return render_template('index.html')
+
+@app.route('/output')
+def output():
+    avg= request.args.get('avg', default=0, type=float)
+    return render_template('output.html', mesage=avg)
